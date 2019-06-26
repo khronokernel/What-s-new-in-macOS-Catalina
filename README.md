@@ -1,4 +1,4 @@
-# What-s-new-in-macOS-Catalina
+# What's new in macOS Catalina
 
 * [What has changed on the surface](README.md#)
 * [What's new under the hood](README.md#)
@@ -27,7 +27,7 @@
 
 **Removal of the AirportBCRM4331.kext**
 
-**Removal of MacPro 4,1 and 5,1**
+**Removal of MacPro4,1 and 5,1**
 
 **Restore macOS from snapshot**
 
