@@ -20,6 +20,7 @@
 
 # What's new under the hood
 
+![]()
 **All system files were moved to a read-only partition**
 
 **32bit apps support**
