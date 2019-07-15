@@ -16,6 +16,7 @@
    * Support for Catalist based apps
 * [Current issues with Catalina](README.md#)
 * [Should you update and how to proceed](README.md#)
+* [What's new with the subreddit?]README.md#)
 
 
 # What has changed on the surface
@@ -98,7 +99,7 @@ While for some reason this is what all the headlines want to talk about, the ide
 * AppleTV 
 * Finder
 
-And the only real ground breaking change from this is that your iPhone will now be synced through finder instead of iTunes
+And the only real ground breaking change from this is that your iPhone will now be synced through Finder instead of iTunes
 
 **iCloud Drive folder sharing**
 
@@ -106,18 +107,30 @@ This one is my personal favorite as this will very useful for sharing files when
 
 **Screen Time**
 
-Have a serious problem trying to do work on your mac/hack without getting distracted? Well now you can finally curb a bit of that addiction and be a bit more productive as long as you have the willpower not to disable Screentime. We'll see hwo
+Have a serious problem trying to do work on your mac/hack without getting distracted? Well now you can finally curb a bit of that addiction and be a bit more productive as long as you have the willpower not to disable Screentime. We'll see how useful/annoying this becomes
 
 **Apple Watch Autentication**
+
+Pretty straight forward, macOS will allow you to replace your password with your Apple Watch in more places. Do keep in mind this requires a supported wireless card
 
 # What's new under the hood
 
 ![symlinkMeme](symlinkMeme.jpg)
 **All system files were moved to a read-only partition**
 
+Probably the biggest change to Catalina is the seperation of user files from the systems. Where this becomes a real problem is users upgrading to Catalina from an existing partition as files can become damadged/corrupted while the conversion happens.
+
+To avoid this, make a new APFS volume just for Catalina and install fresh onto there. From there run migration assistant off your old partition and then delete it
+
 **32bit apps support**
 
+Another potential issue is that 32bit apps no longer work, the people who are most likely to be affected by this are laptop users who use USB wireless dongles that require old 32bit apps. And these apps are likely not to be updated
+
 **Modification of the AirportBCRM4331.kext**
+
+Quite an odd chnage is how the AirportBCRM4331 kext was merged into the AirPortBrcm4360 kext. While no hardware was dropped an odd side-effect came that AirPortBrcm4360 wouldn't load even when BCRM4331 based hardware was installed. 
+
+Solution to this is to force-load the AirPortBrcm4360 kext
 
 **Removal of MacPro4,1 and 5,1**
 
@@ -135,3 +148,12 @@ Have a serious problem trying to do work on your mac/hack without getting distra
 
 
 # Should you update and how to proceed
+
+
+# What's new with the subreddit?
+
+This is more of a mini update from us, things that have changed:
+* Updated sidebar with a new Catalina GPU Buyers Guide
+* New Wireless Buyers Guide
+* Updated Logos, banners and flairs
+
