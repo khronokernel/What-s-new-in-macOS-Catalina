@@ -16,7 +16,7 @@
    * Support for Catalist based apps
 * [Current issues with Catalina](README.md#)
 * [Should you update and how to proceed](README.md#)
-* [What's new with the subreddit?]README.md#)
+* [What's new with the subreddit?](README.md#)
 
 
 # What has changed on the surface
