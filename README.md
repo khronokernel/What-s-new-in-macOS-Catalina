@@ -2,18 +2,18 @@
 
 * [What has changed on the surface](README.md#)
    * Sidecar
-   * Death of itunes
+   * Death of iTunes
    * iCloud Drive folder sharing
    * Screen Time
-   * Apple Watch Autentication
+   * Apple Watch Authentication
 * [What's new under the hood](README.md#)
    * All system files were moved to a read-only partition
    * 32bit apps support
    * Modification of the AirportBCRM4331.kext
    * Removal of MacPro4,1 and 5,1
-   * Restore macOS from snapshot
+   * Restore macOS from a snapshot
    * Kexts moved out of kernel space
-   * Support for Catalist based apps
+   * Support for Catalyst based apps
 * [Current issues with Catalina](README.md#)
 * [Should you update and how to proceed](README.md#)
 * [What's new with the subreddit?](README.md#)
@@ -23,18 +23,18 @@
 
 **Sidecar**
 
-This is probably the feature users are most excited for, what Sidecar allows us to do now is run a supported iPad running iPadOS 13 to be used as a secondary display to either your mac or hackintosh with minimal latency compared to [duet](http://www.duetdisplay.com/?gclid=CjwKCAjwx_boBRA9EiwA4kIELkwxgPYZMk-z68nN1hh0wWuJC2nkk7SREpKdYkMyTEhFskFcwZRscxoCofUQAvD_BwE) and [Astropad](https://astropad.com) with full Apple Pencil Passthrough. 
+This is probably the feature users are most excited for, what Sidecar allows us to do now is run a supported iPad running iPadOS 13 to be used as a secondary display to either your Mac or Hackintosh with minimal latency compared to [duet](http://www.duetdisplay.com/?gclid=CjwKCAjwx_boBRA9EiwA4kIELkwxgPYZMk-z68nN1hh0wWuJC2nkk7SREpKdYkMyTEhFskFcwZRscxoCofUQAvD_BwE) and [Astropad](https://astropad.com) with full Apple Pencil Passthrough. 
 
 > But what's the catch?
 
-Well the catch with this is that there are a few requirements to run Sidecar officially:
+Well, the catch with this is that there are a few requirements to run Sidecar officially:
 
 * Skylake or newer CPU which supports h.265/HEVC encoding
-* An iPad with a A8X CPU
+* An iPad with an A8X CPU
 * A compatible Wireless card or Lighting cable(Sidecar can operate both wirelessly and wired)
 * A SMBIOS supporting Sidecar
 
-While it is possible to get around the SMBIOS limitation, it can be quite unstable for some users so we advise against modify the Sidecar framework unless you absoultely know what you're doing
+While it is possible to get around the SMBIOS limitation, it can be quite unstable for some users so we advise against modify the Sidecar framework unless you know what you're doing
 
 Bypass the SMBIOS retriction:
 
@@ -46,7 +46,7 @@ Unlocking the System Preferance Pane:
 
 [Source](https://twitter.com/stroughtonsmith/status/1136413491462594560)
 
-SMBIOS which offically support Sidecar:
+SMBIOS which officially support Sidecar:
 
 MacBook:
 
@@ -92,24 +92,24 @@ Mac Pro:
 
 **Death of itunes**
 
-While for some reason this is what all the headlines want to talk about, the idea of iTunes is not dead. Instead it's more of a rebirth and clening of iTunes by seperating it into 4 apps:
+While for some reason this is what all the headlines want to talk about, the idea of iTunes is not dead. Instead, it's more of rebirth and cleaning of iTunes by separating it into 4 apps:
 
 * Music
 * Podcast
 * AppleTV 
 * Finder
 
-And the only real ground breaking change from this is that your iPhone will now be synced through Finder instead of iTunes
+And the only real groundbreaking change from this is that your iPhone will now be synced through Finder instead of iTunes
 
 **iCloud Drive folder sharing**
 
-This one is my personal favorite as this will very useful for sharing files when troubleshooting hackintoshes on the subreddit. But unfortunaltely were pretty stuborn in our ways so we'll probably still be dealing with sketchy websites when downloading EFIs, but a Slav can dream
+This one is my personal favourite as this will very useful for sharing files when troubleshooting Hackintoshes on the subreddit. But unfortunately were pretty stubborn in our ways so we'll probably still be dealing with sketchy websites when downloading EFIs, but a Slav can dream
 
 **Screen Time**
 
-Have a serious problem trying to do work on your mac/hack without getting distracted? Well now you can finally curb a bit of that addiction and be a bit more productive as long as you have the willpower not to disable Screentime. We'll see how useful/annoying this becomes
+Have a serious problem trying to do work on your mac/hack without getting distracted? Well, now you can finally curb a bit of that addiction and be a bit more productive as long as you have the willpower not to disable Screentime. We'll see how useful/annoying this becomes
 
-**Apple Watch Autentication**
+**Apple Watch Authentication**
 
 Pretty straight forward, macOS will allow you to replace your password with your Apple Watch in more places. Do keep in mind this requires a supported wireless card
 
@@ -118,7 +118,7 @@ Pretty straight forward, macOS will allow you to replace your password with your
 ![symlinkMeme](symlinkMeme.jpg)
 **All system files were moved to a read-only partition**
 
-Probably the biggest change to Catalina is the seperation of user files from the systems. Where this becomes a real problem is users upgrading to Catalina from an existing partition as files can become damadged/corrupted while the conversion happens.
+Probably the biggest change to Catalina is the separation of user files from the systems. Where this becomes a real problem is users upgrading to Catalina from an existing partition as files can become damaged/corrupted while the conversion happens.
 
 To avoid this, make a new APFS volume just for Catalina and install fresh onto there. From there run migration assistant off your old partition and then delete it
 
@@ -128,37 +128,58 @@ Another potential issue is that 32bit apps no longer work, the people who are mo
 
 **Modification of the AirportBCRM4331.kext**
 
-Quite an odd chnage is how the AirportBCRM4331 kext was merged into the AirPortBrcm4360 kext. While no hardware was dropped an odd side-effect came that AirPortBrcm4360 wouldn't load even when BCRM4331 based hardware was installed. 
+Quite an odd change is how the AirportBCRM4331 kext was merged into the AirPortBrcm4360 kext. While no hardware was dropped an odd side-effect came that AirPortBrcm4360 wouldn't load even when BCRM4331 based hardware was installed. From my tests, an authentic Apple Airport 94331 would load without issues but thrid party models seem to be a hit or miss.
 
-Solution to this is to force-load the AirPortBrcm4360 kext
+A solution to this is to force-load the AirPortBrcm4360 kext
 
 **Removal of MacPro4,1/5,1 and the death of Dual Socket Systems**
 
-Press F to pay respect for our fallen Cheesegrater, you've served us well but it is time for you to go now and rest. One odd quirk to Catalina is that now there are no systems supporting Dual Socket CPUs in Apple's line up and because of this they've decided to change the AppleIntelMCEReporter.kext. This change causes errors when booting iMacPro1,1 or MacPro6,1 SMBIOS with Dual CPU configurations so we need to overcome this by having a kext that beats the 
+Press F to pay respect for our fallen Cheesegrater, you've served us well but it is time for you to go now and rest. One odd quirk to Catalina is that now there are no systems supporting Dual Socket CPUs in Apple's line up and because of this they've decided to change the AppleIntelMCEReporter.kext. This change causes errors when booting iMacPro1,1 or MacPro6,1 SMBIOS with Dual CPU configurations so we need to overcome this by having a kext that beats the Probe score. If you require such kext, you can find DisableMCEReporter [here](https://github.com/khronokernel/DisableMCEReporter-/releases)
 
 
 [Source](https://www.insanelymac.com/forum/topic/339035-pre-release-macos-catalina/?do=findComment&comment=2681826)
 
 **Restore macOS from snapshot**
 
+OS Update break litterally everything? Well now you don't need to rely on thrid party software for snapshots, now you can easily return to a state where macOS wasn't broken
+
 **Kexts moved out of kernel space**
 
-**Support for Catalist based apps**
+This is probably going to be one of the most important changes for stability, specifically a poorly made kext won't result in a hard lockdown anymore. While most kexts are safe and do little to affect the system's stability(if anything makes them more stable), this will give us some breathing room when troubleshooting as we'll have more of a chance to see what's causing issues
 
+**Support for Catalyst based apps**
 
-
+Get ready for a flood of iOS apps on the appstore cause now everyone's a Mac devloper! There's no real hardware requirement besides natively supported hardware, that means users who have been patching their GPU drivers from High Sierra may have issues
 
 # Current issues with Catalina
 
-
+* ~~It doesn't fill the void within you~~
 
 # Should you update and how to proceed
 
+No, the majority shouldn't update as this is a .0 release meaning there's going to still be a lot of bugs hiding within potentially causing many headaches. Best practice is to wait until either 10.15.1 or even 10.15.2 as the majority of bugs will have been fixed by then
+
+Regarding how to update, make check the following:
+
+* Update Clover
+* Update kexts
+* Backup EVERYTHING
+* Make a new APFS volume to install Catalina on(never upgarde, always install fresh)
+* Install Catalina and use migration assistant on the old drive
+* Test everything and if you're happy you can remove Mojave from your system
+
+For those who want the terminal command for the USB:
+
+```
+sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
+```
 
 # What's new with the subreddit?
 
 This is more of a mini update from us, things that have changed:
+
 * Updated sidebar with a new Catalina GPU Buyers Guide
 * New Wireless Buyers Guide
 * Updated Logos, banners and flairs
+* ~~New ways to endoctirnate users into the Vanilla Cult~~
 
