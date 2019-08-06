@@ -36,7 +36,7 @@ Well, the catch with this is that there are a few requirements to run Sidecar of
 
 While it is possible to get around the SMBIOS limitation, it can be quite unstable for some users so we advise against modify the Sidecar framework unless you know what you're doing
 
-Bypass the SMBIOS retriction:
+Bypass the SMBIOS restriction:
 
 `defaults write http://com.apple .sidecar.display allowAllDevices -bool YES`
 
