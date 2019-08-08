@@ -153,6 +153,8 @@ Get ready for a flood of iOS apps on the appstore cause now everyone's a Mac dev
 
 # Current issues with Catalina
 
+* Lilu won't load
+   * This means Lilu has not been updated for Catalina, either update [Lilu](https://github.com/acidanthera/Lilu/releases) or add flag `-lilubetaall`
 * Stalling on `apfs_module_start...`
     * Solution is to either use SSDT-ECUSBX.aml or add the following ACPI patches:
     
@@ -164,6 +166,7 @@ Get ready for a flood of iOS apps on the appstore cause now everyone's a Mac dev
     
     
 * ~~It doesn't fill the void within you~~
+   * ~~2 parts Green Apple Vodka, 1 part Clorox. Repeat every 15 min~~
 
 # Should you update and how to proceed
 
