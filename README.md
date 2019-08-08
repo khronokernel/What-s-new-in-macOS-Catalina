@@ -153,6 +153,16 @@ Get ready for a flood of iOS apps on the appstore cause now everyone's a Mac dev
 
 # Current issues with Catalina
 
+* Stalling on `apfs_module_start...`
+    * Solution is to either use SSDT-ECUSBX.aml or add the following ACPI patches:
+    
+|Comment|Find\*\[HEX\]|Replace\[HEX\]|
+|:-|:-|:-|
+|change EC0 to EC|4543305f|45435f5f|
+|change H\_EC to EC|485f4543|45435f5f|
+|change ECDV to EC|45434456|45435f5f|
+    
+    
 * ~~It doesn't fill the void within you~~
 
 # Should you update and how to proceed
