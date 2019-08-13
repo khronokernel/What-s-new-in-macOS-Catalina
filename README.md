@@ -19,6 +19,11 @@
 * [What's new with the subreddit?](README.md#)
 
 
+# Are there any Nvidia Drivers?
+
+No, stop asking. There will be no support for non-Kepler GPUs in Catalina, let it go man. If you need a new GPU, please refer to the new [GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/)
+
+
 # What has changed on the surface
 
 **Sidecar**
