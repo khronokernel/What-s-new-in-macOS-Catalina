@@ -134,22 +134,22 @@ A solution to this is to force-load the AirPortBrcm4360 kext
 
 **Removal of MacPro4,1/5,1 and the death of Dual Socket Systems**
 
-Press F to pay respect for our fallen Cheesegrater, you've served us well but it is time for you to go now and rest. One odd quirk to Catalina is that now there are no systems supporting Dual Socket CPUs in Apple's line up and because of this they've decided to change the AppleIntelMCEReporter.kext. This change causes errors when booting iMacPro1,1 or MacPro6,1 SMBIOS with Dual CPU configurations so we need to overcome this by having a kext that beats the Probe score. If you require such kext, you can find DisableMCEReporter [here](https://github.com/khronokernel/DisableMCEReporter-/releases)
+Press F to pay respect for our fallen Cheesegrater, you've served us well but it is time for you to go now and rest. One odd quirk to Catalina is that now no systems are supporting Dual Socket CPUs in Apple's line up and because of this they've decided to change the AppleIntelMCEReporter.kext. This change causes errors when booting iMacPro1,1 or MacPro6,1 SMBIOS with Dual CPU configurations so we need to overcome this by having a kext that beats the Probe score. If you require such kext, you can find DisableMCEReporter [here](https://github.com/khronokernel/DisableMCEReporter-/releases)
 
 
 [Source](https://www.insanelymac.com/forum/topic/339035-pre-release-macos-catalina/?do=findComment&comment=2681826)
 
 **Restore macOS from snapshot**
 
-OS Update break litterally everything? Well now you don't need to rely on thrid party software for snapshots, now you can easily return to a state where macOS wasn't broken
+OS Update break literally everything? Well now you don't need to rely on third party software for snapshots, now you can easily return to a state where macOS wasn't broken
 
 **Kexts moved out of kernel space**
 
-This is probably going to be one of the most important changes for stability, specifically a poorly made kext won't result in a hard lockdown anymore. While most kexts are safe and do little to affect the system's stability(if anything makes them more stable), this will give us some breathing room when troubleshooting as we'll have more of a chance to see what's causing issues
+While this won't directly affect us in Catalina, kexts running in kernel space will now be deprecated. What this means is kexts like [Lilu](https://github.com/acidanthera/Lilu) won't have the low-level access it requires to perform its necessary patches. But deprecation doesn't mean removed, Clover's kext injection system has been deprecated for quite a few years but Apple has yet to remove it from macOS. So don't fear too much but keep this as a reminder that not everything will last as it is
 
 **Support for Catalyst based apps**
 
-Get ready for a flood of iOS apps on the appstore cause now everyone's a Mac devloper! There's no real hardware requirement besides natively supported hardware, that means users who have been patching their GPU drivers from High Sierra may have issues
+Get ready for a flood of iOS apps on the AppStore cause now everyone's a Mac developer! There's no real hardware requirement besides natively supported hardware, that means users who have been patching their GPU drivers from High Sierra may have issues
 
 # Current issues with Catalina
 
@@ -170,14 +170,14 @@ Get ready for a flood of iOS apps on the appstore cause now everyone's a Mac dev
 
 # Should you update and how to proceed
 
-No, the majority shouldn't update as this is a .0 release meaning there's going to still be a lot of bugs hiding within potentially causing many headaches. Best practice is to wait until either 10.15.1 or even 10.15.2 as the majority of bugs will have been fixed by then
+No, the majority shouldn't update as this is a .0 release meaning there's going to still be a lot of bugs hiding within potentially causing many headaches. The best practice is to wait until either 10.15.1 or even 10.15.2 as the majority of bugs will have been fixed by then
 
 Regarding how to update, make check the following:
 
 * Update Clover
 * Update kexts
 * Backup EVERYTHING
-* Make a new APFS volume to install Catalina on(never upgarde, always install fresh)
+* Make a new APFS volume to install Catalina on(never upgrade, always install fresh)
 * Install Catalina and use migration assistant on the old drive
 * Test everything and if you're happy you can remove Mojave from your system
 
@@ -194,5 +194,4 @@ This is more of a mini update from us, things that have changed:
 * Updated sidebar with a new Catalina GPU Buyers Guide
 * New Wireless Buyers Guide
 * Updated Logos, banners and flairs
-* ~~New ways to endoctirnate users into the Vanilla Cult~~
-
+* ~~New ways to indoctrinate users into the Vanilla Cult~~
