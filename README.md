@@ -16,6 +16,7 @@
    * Support for Catalyst based apps
 * [Current issues with Catalina](README.md#)
 * [Should you update and how to proceed](README.md#)
+* [What's new in the hackintosh scene?](README.md#)
 * [What's new with the subreddit?](README.md#)
 
 
@@ -161,7 +162,10 @@ Get ready for a flood of iOS apps on the AppStore cause now everyone's a Mac dev
 * Lilu won't load
    * This means Lilu has not been updated for Catalina, either update [Lilu](https://github.com/acidanthera/Lilu/releases) or add flag `-lilubetaall`
 * Stalling on `apfs_module_start...`
-    * Solution is to either use SSDT-ECUSBX.aml or add the following ACPI patches:
+    * Well macOS Catalina now requires some form of EC device present, the reason being is we need to stop AppleACPIEC from loading. Best way to do this is with an SSDT but for some ACPI patches may work:
+       * [SSDT-ECUSBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) 
+       * [SSDT-EC.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)
+       * add the following ACPI patches:
     
 |Comment|Find\*\[HEX\]|Replace\[HEX\]|
 |:-|:-|:-|
@@ -192,11 +196,40 @@ For those who want the terminal command for the USB:
 sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
 ```
 
+
+# What's new in the Hackintosh scene?
+
+**A new ~~foe~~ Boot Loader has appeared!**
+
+From the folks that brought you the many wonders of the Hackintosh world as Lilu, VirtualSMC, WhateverGreen, AptioMemroyFix and so much more are here to present the next step in hackintoshing!: [OpenCore](https://github.com/acidanthera/OpenCorePkg). Currently in beta, what OpenCore wishes to accomplish is to make the Hackintosh environment more like a real mac by adopting many of these features and guidelines like Bless support and little to no ACPI patches. As things are now, most users have no reason to switch to OpenCore but as time goes on Clover may become more and more aged to the pint that for many it will become too unstable. 
+
+For those who are wanting a Vanilla Desktop Guide for OpenCore are in luck!:
+* [OpenCore Vanilla Desktop Guide](https://khronokernel-2.gitbook.io/opencore-vanilla-desktop-guide/)
+
+Do keep in mind this is still in beta and is only recommended for the most enthusiast of you, remember to read the documentation carefully when you're having issues
+
+**AptioMemoryFix is dead, long live FwRuntimeServices!**
+
+So as some of you may know or learning just now, AptioMemoryFix is now dead and will no longer receive any future support.
+If you've checked the GitHub page for AptioFixPkg, you probably read the following:
+
+> AptioFixPkg is now part of AppleSupportPkg and OpenCore, please use them instead:
+
+> AptioMemoryFix.efi is split into OpenCore and FwRuntimeServices.efi.
+
+The problem with this is that this means support for Clover is completely dead and if you want the latest in firmware fixes you'll need to completely ditch clover for OpenCore. And you may read the FwRuntimeServices part but this is also exclusive to OpenCore so don't even try loading that with clover. 
+
+But AptioMemoryFix won't be gong anywhere thankfully, you can still download the final release from the [github](https://github.com/acidanthera/AptioFixPkg/releases).
+
+> Are there alternatives?
+
+Not really, your other option being osxaptiofix3drv but that's not ideal for many people. As things stand, AptioMemoryFix still works perfectly fine but do note that for both future releases of macOS and newer hardware may not work correctly with AptioMemoryFix
+
 # What's new with the subreddit?
 
 This is more of a mini update from us, things that have changed:
 
-* Updated sidebar with a new Catalina GPU Buyers Guide
-* New Wireless Buyers Guide
+* Updated sidebar with a new [Catalina GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/)
+* New [Wireless Buyers Guide](https://khronokernel-7.gitbook.io/wireless-buyers-guide/)
 * Updated Logos, banners and flairs
 * ~~New ways to indoctrinate users into the Vanilla Cult~~
