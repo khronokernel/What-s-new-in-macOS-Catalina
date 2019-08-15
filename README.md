@@ -90,7 +90,7 @@ iMac:
 
 iMac Pro:
 
-* iMacpro1,1
+* iMacPro1,1
 
 Mac Pro:
 
