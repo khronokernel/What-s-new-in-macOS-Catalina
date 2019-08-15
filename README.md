@@ -151,7 +151,7 @@ OS Update break literally everything? Well now you don't need to rely on third p
 
 **Kexts moved out of kernel space**
 
-While this won't directly affect us in Catalina, kexts running in kernel space will now be deprecated. What this means is kexts like [Lilu](https://github.com/acidanthera/Lilu) won't have the low-level access it requires to perform its necessary patches. But deprecation doesn't mean removed, Clover's kext injection system has been deprecated for quite a few years but Apple has yet to remove it from macOS. So don't fear too much but keep this as a reminder that not everything will last as it is. Most if not qall of Apple's kenerl extensions are still in kernel space
+While this won't directly affect us in Catalina, kexts running in kernel space will now be deprecated. What this means is kexts like [Lilu](https://github.com/acidanthera/Lilu) won't have the low-level access it requires to perform its necessary patches. But deprecation doesn't mean removed, Clover's kext injection system has been deprecated for quite a few years but Apple has yet to remove it from macOS. So don't fear too much but keep this as a reminder that not everything will last as it is. Most if not all of Apple's kernel extensions are still in kernel space
 
 **Support for Catalyst based apps**
 
