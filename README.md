@@ -165,8 +165,8 @@ Get ready for a flood of iOS apps on the AppStore cause now everyone's a Mac dev
    * SMC emulator isn't loading, make sure VirtualSMC and Lilu are updated. Temporary solution is `-lilubetaall` or swap for FakeSMC
 * Stalling on `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...` 
     * Well macOS Catalina now requires some form of EC device present, the reason being is we need to stop AppleACPIEC from loading. Best way to do this is with an SSDT but for some ACPI patches may work:
-       * [SSDT-ECUSBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) 
-       * [SSDT-EC.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)
+       * [SSDT-ECUSBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) (Skylake and newer)
+       * [SSDT-EC.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl) (Haswell and older)
        * add the following ACPI patches:
     
 |Comment|Find\*\[HEX\]|Replace\[HEX\]|
