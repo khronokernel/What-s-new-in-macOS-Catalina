@@ -151,7 +151,7 @@ OS Update break literally everything? Well now you don't need to rely on third p
 
 **Kexts moved out of kernel space**
 
-While this won't directly affect us in Catalina, kexts running in kernel space will now be deprecated. What this means is kexts like [Lilu](https://github.com/acidanthera/Lilu) won't have the low-level access it requires to perform its necessary patches. But deprecation doesn't mean removed, Clover's kext injection system has been deprecated for quite a few years but Apple has yet to remove it from macOS. So don't fear too much but keep this as a reminder that not everything will last as it is
+While this won't directly affect us in Catalina, kexts running in kernel space will now be deprecated. What this means is kexts like [Lilu](https://github.com/acidanthera/Lilu) won't have the low-level access it requires to perform its necessary patches. But deprecation doesn't mean removed, Clover's kext injection system has been deprecated for quite a few years but Apple has yet to remove it from macOS. So don't fear too much but keep this as a reminder that not everything will last as it is. Most if not qall of Apple's kenerl extensions are still in kernel space
 
 **Support for Catalyst based apps**
 
@@ -161,7 +161,9 @@ Get ready for a flood of iOS apps on the AppStore cause now everyone's a Mac dev
 
 * Lilu won't load
    * This means Lilu has not been updated for Catalina, either update [Lilu](https://github.com/acidanthera/Lilu/releases) or add flag `-lilubetaall`
-* Stalling on `apfs_module_start...`
+* Stalling on `kextd stall[0]: AppleACPICPU`
+   * SMC emulator isn't loading, make sure VirtualSMC and Lilu are updated. Temporary solution is `-lilubetaall` or swap for FakeSMC
+* Stalling on `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...` 
     * Well macOS Catalina now requires some form of EC device present, the reason being is we need to stop AppleACPIEC from loading. Best way to do this is with an SSDT but for some ACPI patches may work:
        * [SSDT-ECUSBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) 
        * [SSDT-EC.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)
