@@ -14,7 +14,7 @@
    * Restore macOS from a snapshot
    * Kexts moved out of kernel space
    * Support for Catalyst based apps
-* [Current issues with Catalina](README.md#)
+* [Current issues with Catalina](README.md#current-issues-with-Catalina)
 * [Should you update and how to proceed](README.md#)
 * [What's new in the hackintosh scene?](README.md#)
 * [What's new with the subreddit?](README.md#)
