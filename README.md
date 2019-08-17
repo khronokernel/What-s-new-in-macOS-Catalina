@@ -243,7 +243,7 @@ Not really, your other option being osxaptiofix3drv but that's not ideal for man
 
 So within less than a week between incidents, we had 2 users have their entire drive wiped due to running misconfigured scripts or damaging terminal commands. When running scripts off the internet, look to see what they're doing instead of blindly running it, and if you don't know how to interpret their code then avoid it and stick to known good scripts. 
 
-And for those running terminal commands, double-check that they are correct. A quick google search will always provide you answers on whether that command is doing what you were told it should be doing. And this goes the same for people posting harmful scripts for "comedic" purpose, it's toxic and potentially harmful. We will not tolerate such actions so please refrain from posting and if you see others doing this please report immediately. We can't catch every comment so we require the rest of the community to do their part, we r/hackintosh to be a place where people don't need to fear every little detail.
+And for those running terminal commands, double-check that they are correct. A quick google search will always provide you answers on whether that command is doing what you were told it should be doing. And this goes the same for people posting harmful scripts for "comedic" purpose, it's toxic and potentially harmful. We will not tolerate such actions so please refrain from posting and if you see others doing this please report immediately. We can't catch every comment so we require the rest of the community to do their part, we want r/hackintosh to be a place where people don't need to fear every little detail.
 
 
 # What's new with the subreddit?
