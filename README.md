@@ -149,7 +149,7 @@ A solution to this is to force-load the AirPortBrcm4360 kext
 
 **Removal of MacPro4,1/5,1 and the death of Dual Socket Systems**
 
-Press F to pay respect for our fallen Cheesegrater, you've served us well but it is time for you to go now and rest. One odd quirk to Catalina is that now no systems are supporting Dual Socket CPUs in Apple's line up and because of this they've decided to change the AppleIntelMCEReporter.kext. This change causes errors when booting iMacPro1,1 or MacPro6,1 SMBIOS with Dual CPU configurations so we need to overcome this by having a kext that beats the Probe score. If you require such kext, you can find DisableMCEReporter [here](https://github.com/khronokernel/DisableMCEReporter-/releases)
+Press F to pay respect for our fallen Cheesegrater, you've served us well but it is time for you to go now and rest. One odd quirk to Catalina is that now no systems are supporting Dual Socket CPUs in Apple's line up and because of this they've decided to change the AppleIntelMCEReporter.kext. This change causes errors when booting iMacPro1,1 or MacPro6,1 SMBIOS with Dual CPU configurations so we need to overcome this by having a kext that beats the Probe score. If you require such kext, you can find DisableMCEReporter [here](https://github.com/khronokernel/DisableMCEReporter-/releases) or for more functionality use [CPUFriend](https://github.com/acidanthera/CPUFriend/releases)
 
 
 [Source](https://www.insanelymac.com/forum/topic/339035-pre-release-macos-catalina/?do=findComment&comment=2681826)
