@@ -15,9 +15,18 @@
    * Kexts moved out of kernel space
    * Support for Catalyst based apps
 * [Current issues with Catalina](README.md#current-issues-with-Catalina)
+   * Lilu loading
+   * AppleACPICPU stalling
+   * Requiring EC device
 * [Should you update and how to proceed](README.md#)
 * [What's new in the hackintosh scene?](README.md#)
+   * A new ~~foe~~ Boot Loader has appeared!
+   * AptioMemoryFix is dead, long live FwRuntimeServices!
+   * Be diligent on what you run
 * [What's new with the subreddit?](README.md#)
+   * Catalina GPU Buyers Guide
+   * Wireless Buyers Guide
+   * Updated Logos, banners and flairs
 
 
 # Are there any Nvidia Drivers?
