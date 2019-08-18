@@ -252,5 +252,5 @@ This is more of a mini update from us, things that have changed:
 
 * Updated sidebar with a new [Catalina GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/)
 * New [Wireless Buyers Guide](https://khronokernel-7.gitbook.io/wireless-buyers-guide/)
-* Updated Logos, banners and flairs
+* Updated Logos, banners and flairs(for those who want them: [DropBox](https://www.dropbox.com/sh/2ms4cm9x2nyhhpn/AABo9et1egeod2mcj5Mcspdta?dl=0)
 * ~~New ways to indoctrinate users into the Vanilla Cult includng castration~~
