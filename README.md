@@ -170,26 +170,39 @@ Get ready for a flood of iOS apps on the AppStore cause now everyone's a Mac dev
 
 * Lilu won't load
    * This means Lilu has not been updated for Catalina, either update [Lilu](https://github.com/acidanthera/Lilu/releases) or add flag `-lilubetaall`
+* ~~It doesn't fill the void within you~~
+   * ~~2 parts Green Apple Vodka, 1 part Clorox. Repeat every 15 min~~
 * Stalling on `kextd stall[0]: AppleACPICPU`
    * SMC emulator isn't loading, make sure VirtualSMC and Lilu are updated. Temporary solution is `-lilubetaall` or swap for FakeSMC
 * Stalling on `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...` 
     * Well macOS Catalina now requires some form of EC device present, the reason being is we need to stop AppleACPIEC from loading. Sorce: [AppleLife](https://applelife.ru/posts/807985)
     
-To verify whether you have an EC, EC0, H_EC or ECDV you can check with IORegistryExploroer: `iMac17,1 -> AppleACPIPlatformExpert -> EC`.  
-Best way to resolve this is with an SSDT but for some ACPI patches may work:
+To verify whether you have correctly setup your EC device, grab CorpNewt's [USBmap tool](https://github.com/corpnewt/USBMap) and choose `Validate USB Power Settings`. This should return the following:
+```
+Checking EC
+ - EC is properly setup
+Checking USBX requirements
+ - SMBIOS not found in IOUSBHostFamily.kext - checking for USBX
+ --> USBX device found: USBX@0
+
+EC Setup Properly:   True
+USBX Setup Properly: True
+```
+If this doesn't return, then there's some work that need to be done. There's a couple ways we can fix this:
+* [USBmap](https://github.com/corpnewt/USBMap)
+* SSDTs:
    * [SSDT-ECUSBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) (Skylake and newer)
    * [SSDT-EC.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl) (Haswell and older)
-   * add the following ACPI patches:
-    
+* add one of the following ACPI patches:
+
 |Comment|Find\*\[HEX\]|Replace\[HEX\]|
 |:-|:-|:-|
 |change EC0 to EC|4543305f|45435f5f|
 |change H\_EC to EC|485f4543|45435f5f|
 |change ECDV to EC|45434456|45435f5f|
-    
-    
-* ~~It doesn't fill the void within you~~
-   * ~~2 parts Green Apple Vodka, 1 part Clorox. Repeat every 15 min~~
+
+Specifcally that you need to determine what kind of device you have. To check whether you have an EC, EC0, H_EC or ECDV you can check with IORegistryExploroer: `iMac17,1 -> AppleACPIPlatformExpert -> EC`.  
+
 
 # Should you update and how to proceed
 
