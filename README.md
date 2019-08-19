@@ -193,7 +193,7 @@ If this doesn't return, then there's some work that need to be done. There's a c
 * SSDTs:
    * [SSDT-ECUSBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) (Skylake and newer)
    * [SSDT-EC.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl) (Haswell and older)
-* add one of the following ACPI patches:
+* or one of the following ACPI patches:
 
 |Comment|Find\*\[HEX\]|Replace\[HEX\]|
 |:-|:-|:-|
