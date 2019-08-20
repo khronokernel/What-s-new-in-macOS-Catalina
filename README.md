@@ -201,8 +201,8 @@ If this doesn't return, then there's some work that need to be done. There's a c
 |change H\_EC to EC|485f4543|45435f5f|
 |change ECDV to EC|45434456|45435f5f|
 
-Specifcally that you need to determine what kind of device you have. To check whether you have an EC, EC0, H_EC or ECDV you can check with IORegistryExploroer: `iMac17,1 -> AppleACPIPlatformExpert -> EC`.  
-
+Do not use all of these patches at once as it can cause more issues, you'll need to determine what kind of device you have and use the associated patch. To check whether you have an EC, EC0, H_EC or ECDV you can check with IORegistryExploroer: `iMac17,1 -> AppleACPIPlatformExpert -> EC`.  
+![IORegistryExplorer](https://i.imgur.com/E76paAU.png)
 
 # Should you update and how to proceed
 
