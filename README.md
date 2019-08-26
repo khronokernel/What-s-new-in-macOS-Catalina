@@ -175,7 +175,7 @@ Get ready for a flood of iOS apps on the AppStore cause now everyone's a Mac dev
 * Stalling on `kextd stall[0]: AppleACPICPU`
    * SMC emulator isn't loading, make sure VirtualSMC and Lilu are updated. Temporary solution is `-lilubetaall` or swap for FakeSMC
 * Stalling on `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...` 
-    * Well macOS Catalina now requires some form of EC device present, the reason being is we need to stop AppleACPIEC from loading. Sorce: [AppleLife](https://applelife.ru/posts/807985)
+    * Well macOS Catalina now requires some form of EC device present, the reason being is AppleIntelMCEReporter added a new check for interrupt controller and checks board id listed inside info.plist . Sorce: [AppleLife](https://applelife.ru/posts/807985)
     
 To verify whether you have correctly setup your EC device, grab CorpNewt's [USBmap tool](https://github.com/corpnewt/USBMap) and choose `Validate USB Power Settings`. This should return the following:
 ```
@@ -267,3 +267,9 @@ This is more of a mini update from us, things that have changed:
 * New [Wireless Buyers Guide](https://khronokernel-7.gitbook.io/wireless-buyers-guide/)
 * Updated Logos, banners and flairs(for those who want them: [DropBox](https://www.dropbox.com/sh/2ms4cm9x2nyhhpn/AABo9et1egeod2mcj5Mcspdta?dl=0)
 * ~~New ways to indoctrinate users into the Vanilla Cult includng castration~~
+
+
+Credit:
+* AppleLife for original EC accomidations
+* OpenCorePkg team for EC SSDTs
+* XLNC on clarify the EC issue
