@@ -213,7 +213,9 @@ Regarding how to update, make check the following:
 * Update Clover
 * Update kexts
 * Backup EVERYTHING
+* Verify if your EC device is setup correctly
 * Make a new APFS volume to install Catalina on(never upgrade, always install fresh)
+   * `DiskUtility` -> `SSD` -> `+` -> `Add APFS Volume to Container`
 * Install Catalina and use migration assistant on the old drive
 * Test everything and if you're happy you can remove Mojave from your system
 
