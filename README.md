@@ -22,6 +22,7 @@
 * [What's new in the hackintosh scene?](README.md#)
    * A new ~~foe~~ Boot Loader has appeared!
    * AptioMemoryFix is dead, long live FwRuntimeServices!
+   * Clover folder structre changes
    * Be diligent on what you run
 * [What's new with the subreddit?](README.md#)
    * Catalina GPU Buyers Guide
@@ -253,6 +254,16 @@ But AptioMemoryFix won't be gong anywhere thankfully, you can still download the
 > Are there alternatives?
 
 Not really, your other option being osxaptiofix3drv but that's not ideal for many people. As things stand, AptioMemoryFix still works perfectly fine but do note that for both future releases of macOS and newer hardware may not work correctly with AptioMemoryFix
+
+**Clover folder structre changes**
+
+A fairly simple change but one that will catch people off guard, so starting with Clover r4985 we see that the placement of .efi drivers have changed a bit:
+
+* `drivers64UEFI` -> `drivers/UEFI`
+* `drivers64` -> `drivers/BIOS`
+
+But do not fret, the old paths will still work as long as there's no files present in the new directories
+* [Clover's source code](https://sourceforge.net/p/cloverefiboot/code/HEAD/tree/rEFIt_UEFI/refit/main.c#l1508)
 
 **Be diligent on what you run**
 
