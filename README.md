@@ -174,7 +174,7 @@ Get ready for a flood of iOS apps on the AppStore cause now everyone's a Mac dev
    * ~~2 parts Green Apple Vodka, 1 part Clorox. Repeat every 15 min~~
 * Stalling on `kextd stall[0]: AppleACPICPU`
    * SMC emulator isn't loading, make sure VirtualSMC and Lilu are updated. Temporary solution is `-lilubetaall` or swap for FakeSMC
-* Stalling on `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...` 
+* Stalling on `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...`, `previous shutdown cause...`
     * Well macOS Catalina now requires some form of EC device present, the reason being is AppleIntelMCEReporter added a new check for interrupt controller and checks board id listed inside info.plist . Sorce: [AppleLife](https://applelife.ru/posts/807985)
     
 To verify whether you have correctly setup your EC device, grab CorpNewt's [USBmap tool](https://github.com/corpnewt/USBMap) and choose `Validate USB Power Settings`. This should return the following:
