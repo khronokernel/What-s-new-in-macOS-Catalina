@@ -23,6 +23,7 @@
    * A new ~~foe~~ Boot Loader has appeared!
    * AptioMemoryFix is dead, long live FwRuntimeServices!
    * Clover folder structre changes
+   * Where's the Navi support?
    * Be diligent on what you run
 * [What's new with the subreddit?](README.md#)
    * Catalina GPU Buyers Guide
@@ -264,6 +265,15 @@ A fairly simple change but one that will catch people off guard, so starting wit
 
 But do not fret, the old paths will still work as long as there's no files present in the new directories
 * [Clover's source code](https://sourceforge.net/p/cloverefiboot/code/HEAD/tree/rEFIt_UEFI/refit/main.c#l1508)
+
+**Where's the Navi support?**
+
+Well just like with Mojave, talks of Navi support is sparce. Within the AMDRadeonX5000HWServices.kext, we can see 3 kexts that hint at full Navi line up support:
+* AMDRadeonX5100HWLibs.kext
+* AMDRadeonX5400HWLibs.kext
+* AMDRadeonX5700HWLibs.kext
+When taking a deeper look into these kexts, they show us that the code is only partially there requiring a master kext to handle them like an AMDRadeonX6000HWServices.kext. What early Polaris/Vega drivers have shown us before is that we might be waiting until either the end of this year/early next before we get support for Navi. At that point, we might be seeing Navi 20 which might finally come around to beat the pure compute champ that is Vega 20(Radeon VII)
+
 
 **Be diligent on what you run**
 
