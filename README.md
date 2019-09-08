@@ -302,6 +302,11 @@ The Ryzen video specifically puts their EFI folder (something that shouldn't be 
 This is why you shouldn't use Morgonaut, or any other YouTuber that just links to an EFI without actually explaining what you're doing.
 - [DhinakG](https://github.com/dhinakg)
 
+It's sad that we're just repeating what has already happened with the Tonymacx86 stealing tools tools, Rehabman stealing PJALM's configs and InasenlyMac Discord stealing our guides. Please don't support people who take the work of others, instead link to those who've put work into making this community better.
+
+[The **real** Vanilla AMD Guide](https://vanilla.amd-osx.com/)
+
+
 # What's new with the subreddit?
 
 This is more of a mini update from us, things that have changed:
