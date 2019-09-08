@@ -234,10 +234,13 @@ sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstall
 
 From the folks that brought you the many wonders of the Hackintosh world as Lilu, VirtualSMC, WhateverGreen, AptioMemroyFix and so much more are here to present the next step in hackintoshing!: [OpenCore](https://github.com/acidanthera/OpenCorePkg). Currently in beta, what OpenCore wishes to accomplish is to make the Hackintosh environment more like a real mac by adopting many of these features and guidelines like Bless support and little to no ACPI patches. As things are now, most users have no reason to switch to OpenCore but as time goes on Clover may become more and more aged to the point that for many it will become too unstable. 
 
+
+The most interesting part about OpenCore for AMD users is that this will alliviate most of the fear around macOS updates, specifically that the kernel patches will no longer need to be updated for every single minor OS update. The reason being is that the actual patches around AMD CPUs rarely had drastic change, instead just needing to  re-caluculate the offset for each update. Well with OpenCore, we're now able to specify a mask meaning that it'll figure out the offset for us. But this still isn't utimately perfect, reason being is Apple can always throw a curve ball like they did with `10.13.1-.3` vs `10.13.4-.6` but this is still great news. But the downside is that Clover users won't be getting macOS Catalina as AlGrey has no intention to work with Clover ever again instead lettting others convert the patches
+
 For those who are wanting a Vanilla Desktop Guide for OpenCore are in luck!:
 * [OpenCore Vanilla Desktop Guide](https://khronokernel-2.gitbook.io/opencore-vanilla-desktop-guide/)
 
-Do keep in mind this is still in beta and is only recommended for the most enthusiast of you, remember to read the documentation carefully when you're having issues
+Please note that we're currently in beta so more work is yet to come with OpenCore
 
 **AptioMemoryFix is dead, long live FwRuntimeServices!**
 
@@ -313,3 +316,4 @@ Credit:
 * AppleLife for original EC accomidations
 * OpenCorePkg team for EC SSDTs
 * XLNC on clarify the EC issue
+* AlGreyfor the AMD Kernel Patches
