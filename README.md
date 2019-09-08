@@ -272,8 +272,7 @@ Well just like with Mojave, talks of Navi support is sparce. Within the AMDRadeo
 * AMDRadeonX5100HWLibs.kext
 * AMDRadeonX5400HWLibs.kext
 * AMDRadeonX5700HWLibs.kext
-When taking a deeper look into these kexts, they show us that the code is only partially there requiring a master kext to handle them like an AMDRadeonX6000HWServices.kext. What early Polaris/Vega drivers have shown us before is that we might be waiting until either the end of this year/early next before we get support for Navi. At that point, we might be seeing Navi 20 which might finally come around to beat the pure compute champ that is Vega 20(Radeon VII)
-
+When taking a deeper look into these kexts, they show us that the code is only partially there requiring a master kext to handle them like an AMDRadeonX6000HWServices.kext. What early Polaris/Vega drivers have shown us before is that we might be waiting until either the end of this year or early next before we get support for Navi. At that point, we might be seeing Navi 20 which might finally come around to beat the pure compute champ that is Vega 20(Radeon VII)
 
 **Be diligent on what you run**
 
@@ -281,6 +280,24 @@ So within less than a week between incidents, we had 2 users have their entire d
 
 And for those running terminal commands, double-check that they are correct. A quick google search will always provide you answers on whether that command is doing what you were told it should be doing. And this goes the same for people posting harmful scripts for "comedic" purpose, it's toxic and potentially harmful. We will not tolerate such actions so please refrain from posting and if you see others doing this please report immediately. We can't catch every comment so we require the rest of the community to do their part, we want r/hackintosh to be a place where people don't need to fear every little detail.
 
+**Stolen work of hard working hackinshers**
+
+Well you can never escape the scum that hide within our community, and today we talk about the disappointment that is the youtube channel Morgonaut. In a recent video of hers, Teress takes the hard work of Shannee, XNLC and AlGrey's kernel patches and tries to sell them in a pre-built EFI. I'll let a friend and one of the moderators of AMD OS X Discord take it away:
+
+> **About Morgonaut, and why we don't support most YouTube tutorials**
+
+> With the recent release of Morgonaut's video about a "vanilla" Ryzen hackintosh build, we thought we would take the time to provide some background about Morgonaut and their videos.
+
+>Morgonaut is a YouTuber that steals credit for things, and when confronted, denies it. (for example, they made a video using CorpNewt's guide, but tell everyone to skip everything and just use the sample configs - they also claim CorpNewt is one of their "users", which is far from the truth.)
+
+> They also provide "premium" support that is bullshit, and charge for things that you can get for free.
+The Ryzen video specifically puts their EFI folder (something that shouldn't be shared as it's specific to every build) behind a paywall, including the patches.
+
+> Oh, and they don't even link to the vanilla patches, so anyone who follows their video will be completely lost when it doesn't work because of a macOS update.
+
+> And because you don't learn properly with a guide, you will be completely lost if your hack breaks.
+This is why you shouldn't use Morgonaut, or any other YouTuber that just links to an EFI without actually explaining what you're doing.
+- [DhinakG](https://github.com/dhinakg)
 
 # What's new with the subreddit?
 
@@ -289,7 +306,7 @@ This is more of a mini update from us, things that have changed:
 * Updated sidebar with a new [Catalina GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/)
 * New [Wireless Buyers Guide](https://khronokernel-7.gitbook.io/wireless-buyers-guide/)
 * Updated Logos, banners and flairs(for those who want them: [DropBox](https://www.dropbox.com/sh/2ms4cm9x2nyhhpn/AABo9et1egeod2mcj5Mcspdta?dl=0)
-* ~~New ways to indoctrinate users into the Vanilla Cult includng castration~~
+* ~~New ways to indoctrinate users into the Vanilla Cult includng threat of castration~~
 
 
 Credit:
