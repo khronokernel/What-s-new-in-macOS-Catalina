@@ -25,6 +25,7 @@
    * Clover folder structre changes
    * Where's the Navi support?
    * Be diligent on what you run
+   * Stolen work of hard working hackinshers
 * [What's new with the subreddit?](README.md#)
    * Catalina GPU Buyers Guide
    * Wireless Buyers Guide
