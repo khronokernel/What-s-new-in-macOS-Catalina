@@ -317,6 +317,8 @@ This is more of a mini update from us, things that have changed:
 * Updated Logos, banners and flairs(for those who want them: [DropBox](https://www.dropbox.com/sh/2ms4cm9x2nyhhpn/AABo9et1egeod2mcj5Mcspdta?dl=0)
 * ~~New ways to indoctrinate users into the Vanilla Cult includng threat of castration~~
 
+- Your local neighbourhood Hackintosh Slav
+
 
 Credit:
 * AppleLife for original EC accomidations
