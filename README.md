@@ -284,7 +284,7 @@ So within less than a week between incidents, we had 2 users have their entire d
 
 And for those running terminal commands, double-check that they are correct. A quick google search will always provide you answers on whether that command is doing what you were told it should be doing. And this goes the same for people posting harmful scripts for "comedic" purpose, it's toxic and potentially harmful. We will not tolerate such actions so please refrain from posting and if you see others doing this please report immediately. We can't catch every comment so we require the rest of the community to do their part, we want r/hackintosh to be a place where people don't need to fear every little detail.
 
-**Stolen work of hard working hackinshers**
+**Stolen work of hard working hackintoshers**
 
 Well you can never escape the scum that hide within our community, and today we talk about the disappointment that is the youtube channel Morgonaut. In a recent video of hers, Teress takes the hard work of Shannee, XNLC and AlGrey's kernel patches and tries to sell them in a pre-built EFI. I'll let a friend and one of the moderators of AMD OS X Discord take it away:
 
