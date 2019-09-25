@@ -17,6 +17,7 @@
 * [Current issues with Catalina](README.md#current-issues-with-Catalina)
    * Lilu loading
    * AppleACPICPU stalling
+   * Can't write to Library/Extensions to add my kexts
    * Requiring EC device
 * [Should you update and how to proceed](README.md#)
 * [What's new in the hackintosh scene?](README.md#)
@@ -32,9 +33,9 @@
    * Updated Logos, banners and flairs
 
 
-# Are there any Nvidia Drivers?
+# So where are the Nvidia Drivers?
 
-No, stop asking. There will be no support for non-Kepler GPUs in Catalina, let it go man. If you need a new GPU, please refer to the new [GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/)
+There are none, stop asking. There will be no support for non-Kepler GPUs in Catalina, let it go man. If you need a new GPU, please refer to the new [GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/) and the [Disable your unsupported GPU Guide](https://khronokernel-4.gitbook.io/disable-unsupported-gpus/)
 
 
 # What has changed on the surface
@@ -52,7 +53,7 @@ Well, the catch with this is that there are a few requirements to run Sidecar of
 * A compatible Wireless card or Lighting cable(Sidecar can operate both wirelessly and wired)
 * A SMBIOS supporting Sidecar
 
-While it is possible to get around the SMBIOS limitation, it can be quite unstable for some users so we advise against modify the Sidecar framework unless you know what you're doing
+While it is possible to get around the SMBIOS limitation, it can be quite unstable for some users so we advise against modify the Sidecar framework unless you know what you're doing. And users have reported in laer betas that these hacks no longer work.
 
 Bypass the SMBIOS restriction:
 
@@ -176,7 +177,9 @@ Get ready for a flood of iOS apps on the AppStore cause now everyone's a Mac dev
 * ~~It doesn't fill the void within you~~
    * ~~2 parts Green Apple Vodka, 1 part Clorox. Repeat every 15 min~~
 * Stalling on `kextd stall[0]: AppleACPICPU`
-   * SMC emulator isn't loading, make sure VirtualSMC and Lilu are updated. Temporary solution is `-lilubetaall` or swap for FakeSMC
+   * SMC emulator isn't loading, make sure VirtualSMC and Lilu are updated. Temporary solution is `-lilubetaall` or swap for [FakeSMC](https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/) or just update your kexts.
+* Can't write to Library/Extensions to add my kexts
+   * While quite rare to need kexts in L/E, for those needing to do so can run `sudo mount -uw /` to mount the drive for read/write.
 * Stalling on `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...`, `previous shutdown cause...`
     * Well macOS Catalina now requires some form of EC device present, the reason being is AppleIntelMCEReporter added a new check for interrupt controller and checks board id listed inside info.plist . Sorce: [AppleLife](https://applelife.ru/posts/807985)
     
@@ -194,7 +197,7 @@ USBX Setup Properly: True
 If this doesn't return, then there's some work that need to be done. There's a couple ways we can fix this:
 * [USBmap](https://github.com/corpnewt/USBMap)
 * SSDTs:
-   * [SSDT-ECUSBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) (Skylake and newer)
+   * [SSDT-EC-USBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) (Skylake and newer)
    * [SSDT-EC.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl) (Haswell and older)
 * or one of the following ACPI patches:
 
@@ -324,4 +327,4 @@ Credit:
 * AppleLife for original EC accomidations
 * OpenCorePkg team for EC SSDTs
 * XLNC on clarify the EC issue
-* AlGreyfor the AMD Kernel Patches
+* AlGrey for the AMD Kernel Patches
