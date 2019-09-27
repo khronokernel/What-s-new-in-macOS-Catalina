@@ -181,25 +181,23 @@ Get ready for a flood of iOS apps on the AppStore cause now everyone's a Mac dev
 * Can't write to Library/Extensions to add my kexts
    * While quite rare to need kexts in L/E, for those needing to do so can run `sudo mount -uw /` to mount the drive for read/write.
 * Stalling on `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...`, `previous shutdown cause...`
-    * Well macOS Catalina now requires some form of EC device present, the reason being is AppleIntelMCEReporter added a new check for interrupt controller and checks board id listed inside info.plist . Sorce: [AppleLife](https://applelife.ru/posts/807985)
+    * So with macOS catalina, there were some changes in how AppleACPIEC works which makes it so when it doesn't pass the checks that it will stall. Specifically what seems to happen:
+1. AppleACPIPlatform.kext loads and sets all devices with the ACPI name of `EC__` the property of `boot-ec`
+2. It then hands off control to its plugin, AppleACPIEC.kext, and starts a probe for either `PNP0C09` or `boot-ec`
+3. When loaded, it will then verify for the other meaning we must have both `PNP0C09` and `boot-ec`. If not, macOS will just get stuck but due to the nature of parallel kext loading we don't explicitly see the error instead seeing errors such as `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...`, `previous shutdown cause...`, etc. And guess what, PCs don't have their embedded controller named `EC__` instead known by `EC0_`, `H_EC` or `ECDV`.
     
-To verify whether you have correctly setup your EC device, grab CorpNewt's [USBmap tool](https://github.com/corpnewt/USBMap) and choose `Validate USB Power Settings`. This should return the following:
-```
-Checking EC
- - EC is properly setup
-Checking USBX requirements
- - SMBIOS not found in IOUSBHostFamily.kext - checking for USBX
- --> USBX device found: USBX@0
+To get around these problems, we have a couple options:
 
-EC Setup Properly:   True
-USBX Setup Properly: True
-```
-If this doesn't return, then there's some work that need to be done. There's a couple ways we can fix this:
-* [USBmap](https://github.com/corpnewt/USBMap)
-* SSDTs:
-   * [SSDT-EC-USBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) (Skylake and newer)
-   * [SSDT-EC.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl) (Haswell and older)
-* or one of the following ACPI patches:
+* Block `com.apple.driver.AppleACPIEC`
+   * AppleACPIEC is used on laptops so blocking it can cause serious issues but on desktops there is no issue
+* Turn off your real EC and set a fake EC(we still need an EC present for AppleBusPower
+   * Recommended method for desktops, can severly screw up laptops
+      * [SSDT-EC-USBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) (Skylake and newer)
+      * [SSDT-EC.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl) (Haswell and older)
+      * [SSDTTime](https://github.com/corpnewt/SSDTTime)(Use this for when you only have access to the systems DSDT, `F4` at Clover scrren will dump it to EFI/CLOVER/ACPI/origin)
+      * [USBmap](https://github.com/corpnewt/USBMap)(Some may already have an SSDT-EC in their EFI if they ran USBmap sometime after Nov 18, 2018)
+* Rename your EC device
+   * Not recommened for desktops as this still loads AppleACPIEC which is incompatible with desktop PCs
 
 |Comment|Find\*\[HEX\]|Replace\[HEX\]|
 |:-|:-|:-|
@@ -207,9 +205,18 @@ If this doesn't return, then there's some work that need to be done. There's a c
 |change H\_EC to EC|485f4543|45435f5f|
 |change ECDV to EC|45434456|45435f5f|
 
-Do not use all of these patches at once as it can cause more issues, you'll need to determine what kind of device you have and use the associated patch. To check whether you have an EC, EC0, H_EC or ECDV you can check with IORegistryExploroer: `iMac17,1 -> AppleACPIPlatformExpert -> EC`.  
-![IORegistryExplorer](https://i.imgur.com/E76paAU.png)
+> But how do I know what EC I have? 
 
+Easy to tell, open up your DSDT and search for `PNP0C09`. Most will just return 1 device but for those with 2 need to see which is the main. To check, make sure it has the following properties:
+* `_HID`
+* `_CRS`
+* `_GPE`
+Do note if you only have 1 `PNP0C09` device you will not need to check as even systems with only 1 won't always have all the proper properties
+    
+Sources: 
+* [AppleLife](https://applelife.ru/posts/807985)
+* [Platform hardware implementation requirements](https://docs.microsoft.com/en-us/windows-hardware/design/device-experiences/platform-hardware-implementation-requirements)
+    
 # Should you update and how to proceed
 
 No, the majority shouldn't update as this is a .0 release meaning there's going to still be a lot of bugs hiding within potentially causing many headaches. The best practice is to wait until either 10.15.1 or even 10.15.2 as the majority of bugs will have been fixed by then
@@ -326,5 +333,4 @@ This is more of a mini update from us, things that have changed:
 Credit:
 * AppleLife for original EC accomidations
 * OpenCorePkg team for EC SSDTs
-* XLNC on clarify the EC issue
 * AlGrey for the AMD Kernel Patches
