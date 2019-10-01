@@ -317,6 +317,7 @@ It's sad that we're just repeating what has already happened with the Tonymacx86
 
 [The **real** Vanilla AMD Guide](https://vanilla.amd-osx.com/)
 
+And going forward we would like users to not recommend such videos as they both neither teach you the proper process and generally just steal the works of others. Sidebar has everything you'd need
 
 # What's new with the subreddit?
 
