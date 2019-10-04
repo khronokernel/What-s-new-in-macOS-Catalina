@@ -177,17 +177,17 @@ While this won't directly affect us in Catalina, kexts running in kernel space w
 
 **Support for Catalyst based apps**
 
-Get ready for a flood of iOS apps on the AppStore cause now everyone's a Mac developer! There's no real hardware requirement besides natively supported hardware, that means users who have been patching their GPU drivers from High Sierra may have issues running Metal based applications
+Get ready for a flood of iOS apps on the AppStore cause now everyone's a Mac developer! There's no real hardware requirement besides natively supported hardware, that means users who have been patching their GPU drivers from High Sierra may have issues running Metal based applications.
 
 # Current issues with Catalina
 
-* Lilu won't load
-   * This means Lilu has not been updated for Catalina, either update [Lilu](https://github.com/acidanthera/Lilu/releases) or add flag `-lilubetaall`
+* Lilu won't load.
+   * This means Lilu has not been updated for Catalina, either update [Lilu](https://github.com/acidanthera/Lilu/releases) or add flag `-lilubetaall`.
 * ~~It doesn't fill the void within you~~
    * ~~2 parts Green Apple Vodka, 1 part Clorox. Repeat every 15 min~~
-* Stalling on `kextd stall[0]: AppleACPICPU`
+* Stalling on `kextd stall[0]: AppleACPICPU`.
    * SMC emulator isn't loading, make sure VirtualSMC and Lilu are updated. Temporary solution is `-lilubetaall`, update your kexts or swap for [FakeSMC](https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/)
-* Can't write to Library/Extensions to add my kexts
+* Can't write to Library/Extensions to add my kexts.
    * While quite rare to need kexts in L/E, for those needing to do so can run `sudo mount -uw /` to mount the drive for read/write.
 * Stalling on `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...`, `previous shutdown cause...`
     * So with macOS catalina, there were some changes in how AppleACPIEC works which makes it so when it doesn't pass the checks and therefore stall. Specifically what seems to happen:
@@ -201,7 +201,7 @@ To get around these problems, we have a couple options:
 * Block `com.apple.driver.AppleACPIEC`.
    * AppleACPIEC is used on laptops so blocking it can cause serious issues but on desktops there is no issue.
 * Turn off your real EC and set a fake EC(we still need an EC present for AppleBusPower).
-   * Recommended method for desktops, can severly screw up laptops
+   * Recommended method for desktops, can severly screw up laptops.
       * [SSDTTime](https://github.com/corpnewt/SSDTTime)(Use this for when you only have access to the systems DSDT, `F4` at Clover scrren will dump it to EFI/CLOVER/ACPI/origin)
       * [USBmap](https://github.com/corpnewt/USBMap)(Some may already have an SSDT-EC in their EFI if they ran USBmap sometime after Nov 18, 2018)
       * [SSDT-EC-USBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) (Skylake and newer)
@@ -221,7 +221,7 @@ Easy to tell, open up your DSDT and search for `PNP0C09`. Most will just return 
 * `_HID`
 * `_CRS`
 * `_GPE`
-Do note if you only have 1 `PNP0C09` device you will not need to check as even systems with only 1 won't always have all the proper properties
+Do note if you only have 1 `PNP0C09` device you will not need to check as even systems with only 1 won't always have all the proper properties.
     
 Sources: 
 * [AppleLife](https://applelife.ru/posts/807985)
@@ -229,18 +229,18 @@ Sources:
     
 # Should you update and how to proceed
 
-No, the majority shouldn't update as this is a .0 release meaning there's going to still be a lot of bugs hiding within potentially causing many headaches. The best practice is to wait until either 10.15.1 or even 10.15.2 as the majority of bugs will have been fixed by then
+No, the majority shouldn't update as this is a .0 release meaning there's going to still be a lot of bugs hiding within potentially causing many headaches. The best practice is to wait until either 10.15.1 or even 10.15.2 as the majority of bugs will have been fixed by then.
 
 Regarding how to update, make check the following:
 
+* Backup EVERYTHING including your EFI before you updated your kexts or Clover
 * Update Clover
 * Update kexts
-* Backup EVERYTHING includng your EFI before you updated your kexts
-* Verify if your EC device is setup correctly
+* [Verify if your EC device is setup correctly](https://github.com/khronokernel/What-s-new-in-macOS-Catalina#current-issues-with-catalina)(An absolute must, or else no Catalina for you)
+* Do a once over of the [Vanilla Guide](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)(so you can see what methods have been removed and are no longer needed)
 * Make a new APFS volume to install Catalina on(never upgrade, always install fresh)
-   * `DiskUtility` -> `SSD` -> `+` -> `Add APFS Volume to Container`
+   * DiskUtility -> SSD -> + -> Add APFS Volume to Container
 * Install Catalina and use migration assistant on the old drive
-* Test everything and if you're happy you can remove Mojave from your system
 
 For those who want the terminal command for the USB:
 
