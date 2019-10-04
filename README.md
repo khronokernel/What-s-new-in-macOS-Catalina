@@ -10,6 +10,7 @@
    * All system files were moved to a read-only partition
    * 32bit apps support
    * Modification of the AirportBCRM4331.kext
+   * Reinjection of AirportAtheros40 kext
    * Removal of MacPro4,1 and 5,1
    * Restore macOS from a snapshot
    * Kexts moved out of kernel space
