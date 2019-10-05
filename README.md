@@ -136,7 +136,7 @@ Pretty straight forward, macOS will allow you to replace your password with your
 
 # What's new under the hood
 
-<img src="symlinkMeme.jpg" width="25%">
+<img src="symlinkMeme.jpg" width="35%">
 
 **All system files were moved to a read-only partition**
 
