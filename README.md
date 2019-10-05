@@ -136,7 +136,7 @@ Pretty straight forward, macOS will allow you to replace your password with your
 
 # What's new under the hood
 
-![symlinkMeme](symlinkMeme.jpg)
+<img src="symlinkMeme.jpg" width="100" height="100">
 **All system files were moved to a read-only partition**
 
 Probably the biggest change to Catalina is the separation of user files from the systems. Where this becomes a real problem is users upgrading to Catalina from an existing partition as files can become damaged/corrupted while the conversion happens.
