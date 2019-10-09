@@ -1,51 +1,53 @@
 # What's new in macOS Catalina
 
-* [What has changed on the surface](README.md#)
+* What has changed on the surface
    * Sidecar
    * Death of iTunes
    * iCloud Drive folder sharing
    * Screen Time
    * Apple Watch Authentication
-* [What's new under the hood](README.md#)
+* What's new under the hood
    * All system files were moved to a read-only partition
-   * 32bit apps support
+   * Removal of 32bit support
    * Modification of the AirportBCRM4331.kext
    * Reinjection of AirportAtheros40 kext
    * Removal of MacPro4,1 and 5,1
    * Restore macOS from a snapshot
    * Kexts moved out of kernel space
    * Support for Catalyst based apps
-* [Current issues with Catalina](README.md#current-issues-with-Catalina)
+   * Removal of the OpenGL fallback UI renderer
+* Current issues with Catalina
    * Lilu loading
    * AppleACPICPU stalling
    * Can't write to Library/Extensions to add my kexts
    * Requiring EC device
-* [Should you update and how to proceed](README.md#)
-* [What's new in the hackintosh scene?](README.md#)
+* Should you update and how to proceed
+* What's new in the hackintosh scene?
    * A new ~~foe~~ Boot Loader has appeared!
    * AptioMemoryFix is dead, long live FwRuntimeServices!
    * Clover folder structre changes
    * Where's the Navi support?
    * Chrome being dumb again
-   * Stolen work of hard working hackinshers
-* [What's new with the subreddit?](README.md#)
+* What's new with the subreddit?
    * Catalina GPU Buyers Guide
    * Wireless Buyers Guide
    * Updated Logos, banners and flairs
 
-
 # So where are the Nvidia Drivers?
 
-There are none, stop asking. There will be no support for non-Kepler GPUs in Catalina, let it go man. If you need a new GPU, please refer to the new [GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/) and the [Disable your unsupported GPU Guide](https://khronokernel-4.gitbook.io/disable-unsupported-gpus/)
+There are none, stop asking. There will be no support for non-Kepler GPUs in Catalina, let it go man. It's not healthy to keep a toxic relationship going, it's best for the both of you.
 
+If you need a new GPU, please refer to the new [GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/) and the [Disable your unsupported GPU Guide](https://khronokernel-4.gitbook.io/disable-unsupported-gpus/)
 
 # What has changed on the surface
 
+The average stuff, skip to **What's new under the hood** for the more important info.
+
 **Sidecar**
 
-This is probably the feature users are most excited for, what Sidecar allows us to do now is run a supported iPad running iPadOS 13 to be used as a secondary display to either your Mac or Hackintosh with minimal latency compared to [duet](http://www.duetdisplay.com/?gclid=CjwKCAjwx_boBRA9EiwA4kIELkwxgPYZMk-z68nN1hh0wWuJC2nkk7SREpKdYkMyTEhFskFcwZRscxoCofUQAvD_BwE) and [Astropad](https://astropad.com) with full Apple Pencil Passthrough. 
+This is probably the feature users are most excited for, what Sidecar allows us to do now is run a supported iPad running iPadOS 13 to be used as a secondary display to either your Mac or Hackintosh with minimal latency compared to [duet display](http://www.duetdisplay.com/?gclid=CjwKCAjwx_boBRA9EiwA4kIELkwxgPYZMk-z68nN1hh0wWuJC2nkk7SREpKdYkMyTEhFskFcwZRscxoCofUQAvD_BwE) and [Astropad](https://astropad.com) with full Apple Pencil Passthrough.
 
-> But what's the catch?
+>But what's the catch?
 
 Well, the catch with this is that there are a few requirements to run Sidecar officially:
 
@@ -58,13 +60,13 @@ Well, the catch with this is that there are a few requirements to run Sidecar of
 While it is possible to get around the SMBIOS limitation, it can be quite unstable for some users so we advise against modify the Sidecar framework unless you know what you're doing. And users have reported in laer betas that these hacks no longer work.
 
 Bypass the SMBIOS restriction:
-```
-defaults write http://com.apple .sidecar.display allowAllDevices -bool YES
-```
+
+    defaults write http://com.apple .sidecar.display allowAllDevices -bool YES
+
 Unlocking the System Preferance Pane:
-```
-defaults write com.apple.sidecar.display hasShownPref -bool true
-```
+
+    defaults write com.apple.sidecar.display hasShownPref -bool true
+
 [Source](https://twitter.com/stroughtonsmith/status/1136413491462594560)
 
 SMBIOS which officially support Sidecar:
@@ -117,7 +119,7 @@ While for some reason this is what all the headlines want to talk about, the ide
 
 * Music
 * Podcast
-* AppleTV 
+* AppleTV
 * Finder
 
 And the only real groundbreaking change from this is that your iPhone will now be synced through Finder instead of iTunes.
@@ -136,18 +138,19 @@ Pretty straight forward, macOS will allow you to replace your password with your
 
 # What's new under the hood
 
-![symlinkMeme](symlinkMeme.jpg)
+&#x200B;
+
 **All system files were moved to a read-only partition**
 
 Probably the biggest change to Catalina is the separation of user files from the systems. Where this becomes a real problem is users upgrading to Catalina from an existing partition as files can become damaged/corrupted while the conversion happens.
 
 To avoid this, make a new APFS volume just for Catalina and install fresh onto there. From there run migration assistant off your old partition and then delete it.
 
-**32bit apps support**
+**Removal of 32bit support**
 
 Another potential issue is that 32bit apps no longer work, the people who are most likely to be affected by this are laptop users who use USB wireless dongles that require old 32bit apps. And these apps are likely not to be updated.
 
-But the upside to this AMD users will have uch better AMD support for many apps, problem is that Apple that still call upon Intel specific functions still break. So depending on how Adobe handles this, Lightroom and others may finally be fixed(or we realize that there's more code tied to Intel than we expected).
+But the upside to this AMD users will have much better AMD support for many apps, problem is that Apple that still call upon Intel specific functions still break. So depending on how Adobe handles this, Lightroom and others may finally be fixed(or we realize that there's more code tied to Intel than we expected).
 
 **Modification of the AirportBCRM4331.kext**
 
@@ -179,6 +182,12 @@ While this won't directly affect us in Catalina, kexts running in kernel space w
 
 Get ready for a flood of iOS apps on the AppStore cause now everyone's a Mac developer! There's no real hardware requirement besides natively supported hardware, that means users who have been patching their GPU drivers from High Sierra may have issues running Metal based applications.
 
+**Removal of the OpenGL fallback UI renderer**
+
+Unlike Mojave, systems with non-Metal GPUs can no longer be accelerated (without some super gross patches). This means that it's even more difficult to run a Vanilla system with older GPUs, so we recommend upgrading when possible similar to the Airport Atheros situation.
+
+Credit to u/ASentientBot
+
 # Current issues with Catalina
 
 * Lilu won't load.
@@ -190,24 +199,24 @@ Get ready for a flood of iOS apps on the AppStore cause now everyone's a Mac dev
 * Can't write to Library/Extensions to add my kexts.
    * While quite rare to need kexts in L/E, for those needing to do so can run `sudo mount -uw /` to mount the drive for read/write.
 * Stalling on `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...`, `previous shutdown cause...`
-    * So with macOS catalina, there were some changes in how AppleACPIEC works which makes it so when it doesn't pass the checks and therefore stall. Specifically what seems to happen:
+   * So with macOS catalina, there were some changes in how AppleACPIEC works which makes it so when it doesn't pass the checks and therefore stall. Specifically the Embedded Controller(EC) has new processes happen to it:
 
-1. AppleACPIPlatform.kext loads and sets all devices with the ACPI name of `EC__` the property of `boot-ec`
+1. AppleACPIPlatform.kext loads and sets all devices with the ACPI name of `EC__` and device `PNP0C09` the property of `boot-ec`
 2. It then hands off control to its plugin, AppleACPIEC.kext, and starts a probe for either `PNP0C09` or `boot-ec`
 3. When loaded, it will then verify for the other meaning we must have both `PNP0C09` and `boot-ec`. If not, macOS will just get stuck but due to the nature of parallel kext loading we don't explicitly see the error instead seeing errors such as `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...`, `previous shutdown cause...`, etc. And guess what, PCs don't have their embedded controller named `EC__` instead known by `EC0_`, `H_EC` or `ECDV`.
-    
+
 To get around these problems, we have a couple options:
 
 * Block `com.apple.driver.AppleACPIEC`.
-   * AppleACPIEC is used on laptops so blocking it can cause serious issues but on desktops there is no issue.
+   * AppleACPIEC is used on laptops so blocking it can cause serious issues but on desktops there is no issue. Problem is this requires OpenCore and currently there re bugs with it: [OC kext blocker not working](https://github.com/acidanthera/bugtracker/issues/497)
 * Turn off your real EC and set a fake EC(we still need an EC present for AppleBusPower).
    * Recommended method for desktops, can severly screw up laptops.
-      * [SSDTTime](https://github.com/corpnewt/SSDTTime)(Use this for when you only have access to the systems DSDT, `F4` at Clover scrren will dump it to EFI/CLOVER/ACPI/origin)
+      * [SSDTTime](https://github.com/corpnewt/SSDTTime)(Use this for when you have access to the systems DSDT, `F4` at Clover scrren will dump it to EFI/CLOVER/ACPI/origin. Easiest and recommenced way to setup EC, only way for AMD CPU users)
       * [USBmap](https://github.com/corpnewt/USBMap)(Some may already have an SSDT-EC in their EFI if they ran USBmap sometime after Nov 18, 2018)
       * [SSDT-EC-USBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) (Skylake and newer)
       * [SSDT-EC.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl) (Haswell and older)
 * Rename your EC device.
-   * Not recommened for desktops as this still loads AppleACPIEC which is incompatible with desktop PCs, ideal solution for laptops. 
+   * Not recommened for desktops as this still loads AppleACPIEC which is incompatible with desktop PCs, ideal solution for laptops.
 
 |Comment|Find\*\[HEX\]|Replace\[HEX\]|
 |:-|:-|:-|
@@ -215,18 +224,21 @@ To get around these problems, we have a couple options:
 |change H\_EC to EC|485f4543|45435f5f|
 |change ECDV to EC|45434456|45435f5f|
 
-> But how do I know what EC I have? 
+>But how do I know what EC I have?
 
 Easy to tell, open up your DSDT and search for `PNP0C09`. Most will just return 1 device but for those with 2 need to see which is the main. To check, make sure it has the following properties:
+
 * `_HID`
 * `_CRS`
 * `_GPE`
+
 Do note if you only have 1 `PNP0C09` device you will not need to check as even systems with only 1 won't always have all the proper properties.
-    
-Sources: 
+
+Sources:
+
 * [AppleLife](https://applelife.ru/posts/807985)
 * [Platform hardware implementation requirements](https://docs.microsoft.com/en-us/windows-hardware/design/device-experiences/platform-hardware-implementation-requirements)
-    
+
 # Should you update and how to proceed
 
 No, the majority shouldn't update as this is a .0 release meaning there's going to still be a lot of bugs hiding within potentially causing many headaches. The best practice is to wait until either 10.15.1 or even 10.15.2 as the majority of bugs will have been fixed by then.
@@ -236,6 +248,7 @@ Regarding how to update, make check the following:
 * Backup EVERYTHING including your EFI before you updated your kexts or Clover
 * Update Clover
 * Update kexts
+* Update firmware drivers(make sure you adjusted for the new drivers/UEFI path)
 * [Verify if your EC device is setup correctly](https://github.com/khronokernel/What-s-new-in-macOS-Catalina#current-issues-with-catalina)(An absolute must, or else no Catalina for you)
 * Do a once over of the [Vanilla Guide](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)(so you can see what methods have been removed and are no longer needed)
 * Make a new APFS volume to install Catalina on(never upgrade, always install fresh)
@@ -244,39 +257,40 @@ Regarding how to update, make check the following:
 
 For those who want the terminal command for the USB:
 
-```
-sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
-```
-
+    sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
 
 # What's new in the Hackintosh scene?
 
-**A new ~~foe~~ Boot Loader has appeared!**
+**A new** **~~foe~~** **Boot Loader has appeared!**
 
-From the folks that brought you the many wonders of the Hackintosh world as Lilu, VirtualSMC, WhateverGreen, AptioMemroyFix and so much more are here to present the next step in hackintoshing!: [OpenCore](https://github.com/acidanthera/OpenCorePkg). Currently in beta, what OpenCore wishes to accomplish is to make the Hackintosh environment more like a real mac by adopting many of these features and guidelines like Bless support and little to no ACPI patches. As things are now, most users have no reason to switch to OpenCore but as time goes on Clover may become more and more aged to the point that for many it will become too unstable. 
+From the folks that brought you the many wonders of the Hackintosh world as Lilu, VirtualSMC, WhateverGreen, AptioMemoryFix and so much more are here to present the next step in hackintoshing!: [OpenCore](https://github.com/acidanthera/OpenCorePkg). Currently in beta, what OpenCore wishes to accomplish is to make the Hackintosh environment more like a real mac by adopting many of these features and guidelines like Bless support and little to no ACPI patches. As things are now, most users have no reason to switch to OpenCore but as time goes on Clover may become more and more aged to the point that for many it will become too unstable.
 
+The most interesting part about OpenCore for AMD users is that this will alliviate most of the fear around macOS updates, specifically that the kernel patches will no longer need to be updated for every single minor OS update. The reason being is that the actual patches around AMD CPUs rarely had drastic change, instead just needing to  re-caluculate the offset for each update. Well with OpenCore, we're now able to specify a mask meaning that it'll figure out the offset for us. But this still isn't utimately perfect, reason being is Apple can always throw a curve ball like they did with `10.13.1-.3` vs `10.13.4-.6` but this is still great news. But the downside is that Clover users won't be getting macOS Catalina as AlGrey has no intention to work with Clover ever again instead letting others convert the patches, so better learn how to make your patches!
 
-The most interesting part about OpenCore for AMD users is that this will alliviate most of the fear around macOS updates, specifically that the kernel patches will no longer need to be updated for every single minor OS update. The reason being is that the actual patches around AMD CPUs rarely had drastic change, instead just needing to  re-caluculate the offset for each update. Well with OpenCore, we're now able to specify a mask meaning that it'll figure out the offset for us. But this still isn't utimately perfect, reason being is Apple can always throw a curve ball like they did with `10.13.1-.3` vs `10.13.4-.6` but this is still great news. But the downside is that Clover users won't be getting macOS Catalina as AlGrey has no intention to work with Clover ever again instead lettting others convert the patches, so better learn how to make your patches!(Or wait for others to do the work)
+OpenCore Catalina AMD patches have be posted on both the [AMD OS X Discord](https://discord.gg/EfCYAJW) and linked here(Patches work with all versions of High Sierra, Mojave and Catalina):
+
+* [OpenCore 17h patches](https://cdn.discordapp.com/attachments/611462337446281236/630939338133209139/OC-patches-17h.plist)
+* [OpenCore 15h, 16h patches](https://cdn.discordapp.com/attachments/611462337446281236/630939338133209138/OC-patches-15_16h.plist)
 
 For those who are wanting a Vanilla Desktop Guide for OpenCore are in luck!:
+
 * [OpenCore Vanilla Desktop Guide](https://khronokernel-2.gitbook.io/opencore-vanilla-desktop-guide/)
 
 Please note that we're currently in beta but hoping to be in 1.0.0 release by the end of the month.
 
 **AptioMemoryFix is dead, long live FwRuntimeServices!**
 
-So as some of you may know or learning just now, AptioMemoryFix is now dead and will no longer receive any future support.
-If you've checked the GitHub page for AptioFixPkg, you probably read the following:
+So as some of you may know or learning just now, AptioMemoryFix is now dead and will no longer receive any future support. If you've checked the GitHub page for AptioFixPkg, you probably read the following:
 
-> AptioFixPkg is now part of AppleSupportPkg and OpenCore, please use them instead:
+>AptioFixPkg is now part of AppleSupportPkg and OpenCore, please use them instead:  
+>  
+>AptioMemoryFix.efi is split into OpenCore and FwRuntimeServices.efi.
 
-> AptioMemoryFix.efi is split into OpenCore and FwRuntimeServices.efi.
-
-The problem with this is that this means support for Clover is completely dead and if you want the latest in firmware fixes you'll need to completely ditch clover for OpenCore. And you may read the FwRuntimeServices part but this is also exclusive to OpenCore so don't even try loading that with clover. 
+The problem with this is that this means support for Clover is completely dead and if you want the latest in firmware fixes you'll need to completely ditch clover for OpenCore. And you may read the FwRuntimeServices part but this is also exclusive to OpenCore so don't even try loading that with clover.
 
 But AptioMemoryFix won't be gong anywhere thankfully, you can still download the final release from the [github](https://github.com/acidanthera/AptioFixPkg/releases).
 
-> Are there alternatives?
+>Are there alternatives?
 
 Not really, your other option being osxaptiofix3drv but that's not ideal for many people. As things stand, AptioMemoryFix still works perfectly fine but do note that for both future releases of macOS and newer hardware may not work correctly with AptioMemoryFix
 
@@ -284,10 +298,11 @@ Not really, your other option being osxaptiofix3drv but that's not ideal for man
 
 A fairly simple change but one that will catch people off guard, so starting with Clover r4985 we see that the placement of .efi drivers have changed a bit:
 
-* `drivers64UEFI` -> `drivers/UEFI`
-* `drivers64` -> `drivers/BIOS`
+* `drivers64UEFI` \-> `drivers/UEFI`
+* `drivers64` \-> `drivers/BIOS`
 
 But do not fret, the old paths will still work as long as there's no files present in the new directories
+
 * [Clover's source code](https://sourceforge.net/p/cloverefiboot/code/HEAD/tree/rEFIt_UEFI/refit/main.c#l1508)
 
 **Where's the Navi support?**
@@ -298,62 +313,37 @@ Well just like with Mojave, talks of Navi support is sparce. Within the AMDRadeo
 * AMDRadeonX5400HWLibs.kext
 * AMDRadeonX5700HWLibs.kext
 
-When taking a deeper look into these kexts, they show us that the code is only partially there requiring a master kext to handle them like an AMDRadeonX6000HWServices.kext. What early Polaris/Vega drivers have shown us before is that we might be waiting until either the end of this year or early next before we get support for Navi. At that point, we might be seeing Navi 20 which might finally come around to beat the pure compute champ that is Vega 20(Radeon VII). But then there's rumblings of Vega 30 so who knows. ¯\_(ツ)_/¯
+When taking a deeper look into these kexts, they show us that the code is only partially there requiring a master kext to handle them like an AMDRadeonX6000HWServices.kext. What early Polaris/Vega drivers have shown us before is that we might be waiting until either the end of this year or early next before we get support for Navi. At that point, we might be seeing Navi 20 which might finally come around to beat the pure compute champ that is Vega 20(Radeon VII). But then there's rumblings of Vega 30 so who knows. ¯\_(ツ)\_/¯
 
 Wanting to know when Navi support comes? Run the following pointed as S/L/E:
-```
-grep -ir "731F" .
-```
-This just checks if the 5700XT PCI ID is referenced anywhere, as of the GM there still is nothing that would hook onto a Navi GPU. 
+
+    grep -ir "731F" .
+
+This just checks if the 5700XT PCI ID is referenced anywhere, as of the GM there still is nothing that would hook onto a Navi GPU. And the [GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/) will be updated when Navi support is added.
 
 **Chrome being dumb again**
 
-Got SIP off and updated chrome? Well shit likely broke, I'll point you to some posts that are better at explaining this than me:
+Got SIP off and updated chrome? Well shit likely broke cause Chrome deleted a /var symlink, I'll point you to some posts that are better at explaining this than me:
 
 * [Google saying they fucked up and you need to reinstall](https://support.google.com/chrome/thread/15235262)
-* [u/Fargo_Newb's work arounds](https://www.reddit.com/r/hackintosh/comments/d8tm8z/psa_google_chrome_updaterkeystone_rendering/)
-
-**Stolen work of hard working hackintoshers**
-
-Well you can never escape the scum that hide within our community, and today we talk about the disappointment that is the youtube channel Morgonaut. In a recent video of hers, Teress takes the hard work of Shannee, XNLC and AlGrey's kernel patches and tries to sell them in a pre-built EFI. I'll let a friend and one of the moderators of AMD OS X Discord take it away:
-
-> **About Morgonaut, and why we don't support most YouTube tutorials**
-
-> With the recent release of Morgonaut's video about a "vanilla" Ryzen hackintosh build, we thought we would take the time to provide some background about Morgonaut and their videos.
-
->Morgonaut is a YouTuber that steals credit for things, and when confronted, denies it. (for example, they made a video using CorpNewt's guide, but tell everyone to skip everything and just use the sample configs - they also claim CorpNewt is one of their "users", which is far from the truth.)
-
-> They also provide "premium" support that is bullshit, and charge for things that you can get for free.
-The Ryzen video specifically puts their EFI folder (something that shouldn't be shared as it's specific to every build) behind a paywall, including the patches.
-
-> Oh, and they don't even link to the vanilla patches, so anyone who follows their video will be completely lost when it doesn't work because of a macOS update.
-
-> And because you don't learn properly with a guide, you will be completely lost if your hack breaks.
-This is why you shouldn't use Morgonaut, or any other YouTuber that just links to an EFI without actually explaining what you're doing.
-- [DhinakG](https://github.com/dhinakg)
-
-It's sad that we're just repeating what has already happened with the Tonymacx86 stealing tools tools, Rehabman stealing PJALM's configs and InasenlyMac Discord stealing our guides. Please don't support people who take the work of others, instead link to those who've put work into making this community better.
-
-[The **real** Vanilla AMD Guide](https://vanilla.amd-osx.com/)
-
-And going forward we would like users to not recommend such videos as they both neither teach you the proper process and generally just steal the works of others. Sidebar has everything you'd need.
+* [u/Fargo\_Newb's work arounds](https://www.reddit.com/r/hackintosh/comments/d8tm8z/psa_google_chrome_updaterkeystone_rendering/)
 
 # What's new with the subreddit?
 
 This is more of a mini update from us, things that have changed:
 
-* Updated sidebar with a new [Catalina GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/)
+* Updated sidebar with a new [GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/)
 * New [Wireless Buyers Guide](https://khronokernel-7.gitbook.io/wireless-buyers-guide/)
-* Updated Logos, banners and flairs(for those who want them: [DropBox](https://www.dropbox.com/sh/2ms4cm9x2nyhhpn/AABo9et1egeod2mcj5Mcspdta?dl=0))
+* New [OpenCore Vanilla Desktop Guide](https://khronokernel-2.gitbook.io/opencore-vanilla-desktop-guide/)
+* Updated Logos, banners and flairs
 * ~~New ways to indoctrinate users into the Vanilla Cult includng threat of castration~~
 
+Hope you found this not so little post helpful,
 
-Hope you found this not so little post helpful, 
-
-- Your local neighbourhood Hackintosh Slav
-
+* Your local neighbourhood Hackintosh Slav
 
 Credit:
-* AppleLife for original EC accomidations
+
+* AppleLife for original EC accommodations
 * OpenCorePkg team for EC SSDTs
 * AlGrey for the AMD Kernel Patches
