@@ -1,4 +1,4 @@
-# What's new in macOS Catalina
+[What's new in macOS Catalina Github](https://github.com/khronokernel/What-s-new-in-macOS-Catalina)
 
 * What has changed on the surface
    * Sidecar
@@ -61,7 +61,7 @@ While it is possible to get around the SMBIOS limitation, it can be quite unstab
 
 Bypass the SMBIOS restriction:
 
-    defaults write http://com.apple .sidecar.display allowAllDevices -bool YES
+    defaults write com.apple.sidecar.display allowAllDevices -bool YES
 
 Unlocking the System Preferance Pane:
 
@@ -203,18 +203,17 @@ Credit to u/ASentientBot
 
 1. AppleACPIPlatform.kext loads and sets all devices with the ACPI name of `EC__` and device `PNP0C09` the property of `boot-ec`
 2. It then hands off control to its plugin, AppleACPIEC.kext, and starts a probe for either `PNP0C09` or `boot-ec`
-3. When loaded, it will then verify for the other meaning we must have both `PNP0C09` and `boot-ec`. If not, macOS will just get stuck but due to the nature of parallel kext loading we don't explicitly see the error instead seeing errors such as `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...`, `previous shutdown cause...`, etc. And guess what, PCs don't have their embedded controller named `EC__` instead known by `EC0_`, `H_EC` or `ECDV`.
+3. When loaded, it will then verify for the other meaning we must have both `PNP0C09` and `boot-ec`. If not, macOS will just get stuck but due to the nature of parallel kext loading we don't explicitly see the error instead seeing errors such as `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...`, `previous shutdown cause...`, etc. And guess what, most PCs don't have their embedded controller named `EC__` instead known by `EC0_`, `H_EC` or `ECDV`.(Lenovos are the rare exception)
 
 To get around these problems, we have a couple options:
 
-* Block `com.apple.driver.AppleACPIEC`.
-   * AppleACPIEC is used on laptops so blocking it can cause serious issues but on desktops there is no issue. Problem is this requires OpenCore and currently there re bugs with it: [OC kext blocker not working](https://github.com/acidanthera/bugtracker/issues/497)
 * Turn off your real EC and set a fake EC(we still need an EC present for AppleBusPower).
    * Recommended method for desktops, can severly screw up laptops.
-      * [SSDTTime](https://github.com/corpnewt/SSDTTime)(Use this for when you have access to the systems DSDT, `F4` at Clover scrren will dump it to EFI/CLOVER/ACPI/origin. Easiest and recommenced way to setup EC, only way for AMD CPU users)
+      * [SSDTTime](https://github.com/corpnewt/SSDTTime)(Use this for when you have access to the systems DSDT, `F4` at Clover screen will dump it to EFI/CLOVER/ACPI/origin or running SSDTTime in Windows/Linux can also dump it. Easiest and recommenced way to setup EC, only way for AMD CPU users)
       * [USBmap](https://github.com/corpnewt/USBMap)(Some may already have an SSDT-EC in their EFI if they ran USBmap sometime after Nov 18, 2018)
       * [SSDT-EC-USBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) (Skylake and newer)
       * [SSDT-EC.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl) (Haswell and older)
+   * Don't forget to add the .aml(Assembled) file to EFI/CLOVER/ACPI/Patched
 * Rename your EC device.
    * Not recommened for desktops as this still loads AppleACPIEC which is incompatible with desktop PCs, ideal solution for laptops.
 
@@ -223,6 +222,7 @@ To get around these problems, we have a couple options:
 |change EC0 to EC|4543305f|45435f5f|
 |change H\_EC to EC|485f4543|45435f5f|
 |change ECDV to EC|45434456|45435f5f|
+|change PGEC to EC|50474543|45435f5f|
 
 >But how do I know what EC I have?
 
@@ -249,7 +249,7 @@ Regarding how to update, make check the following:
 * Update Clover
 * Update kexts
 * Update firmware drivers(make sure you adjusted for the new drivers/UEFI path)
-* [Verify if your EC device is setup correctly](https://github.com/khronokernel/What-s-new-in-macOS-Catalina#current-issues-with-catalina)(An absolute must, or else no Catalina for you)
+* Verify if your EC device is setup correctly(An absolute must, or else no Catalina for you)
 * Do a once over of the [Vanilla Guide](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)(so you can see what methods have been removed and are no longer needed)
 * Make a new APFS volume to install Catalina on(never upgrade, always install fresh)
    * DiskUtility -> SSD -> + -> Add APFS Volume to Container
@@ -269,8 +269,8 @@ The most interesting part about OpenCore for AMD users is that this will allivia
 
 OpenCore Catalina AMD patches have be posted on both the [AMD OS X Discord](https://discord.gg/EfCYAJW) and linked here(Patches work with all versions of High Sierra, Mojave and Catalina):
 
-* [OpenCore 17h patches](https://cdn.discordapp.com/attachments/611462337446281236/630939338133209139/OC-patches-17h.plist)
-* [OpenCore 15h, 16h patches](https://cdn.discordapp.com/attachments/611462337446281236/630939338133209138/OC-patches-15_16h.plist)
+* [OpenCore 17h patches](https://github.com/AMD-OSX/AMD_Vanilla/tree/opencore/17h)
+* [OpenCore 15h, 16h patches](https://github.com/AMD-OSX/AMD_Vanilla/tree/opencore/15h_16h)
 
 For those who are wanting a Vanilla Desktop Guide for OpenCore are in luck!:
 
@@ -307,19 +307,7 @@ But do not fret, the old paths will still work as long as there's no files prese
 
 **Where's the Navi support?**
 
-Well just like with Mojave, talks of Navi support is sparce. Within the AMDRadeonX5000HWServices.kext, we can see 3 kexts that hint at full Navi line up support:
-
-* AMDRadeonX5100HWLibs.kext
-* AMDRadeonX5400HWLibs.kext
-* AMDRadeonX5700HWLibs.kext
-
-When taking a deeper look into these kexts, they show us that the code is only partially there requiring a master kext to handle them like an AMDRadeonX6000HWServices.kext. What early Polaris/Vega drivers have shown us before is that we might be waiting until either the end of this year or early next before we get support for Navi. At that point, we might be seeing Navi 20 which might finally come around to beat the pure compute champ that is Vega 20(Radeon VII). But then there's rumblings of Vega 30 so who knows. ¯\_(ツ)\_/¯
-
-Wanting to know when Navi support comes? Run the following pointed as S/L/E:
-
-    grep -ir "731F" .
-
-This just checks if the 5700XT PCI ID is referenced anywhere, as of the GM there still is nothing that would hook onto a Navi GPU. And the [GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/) will be updated when Navi support is added.
+As of 10.15.2, both the 5700 series and 5500 series are now compatible with macOS. Please see the [GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/) for more info
 
 **Chrome being dumb again**
 
