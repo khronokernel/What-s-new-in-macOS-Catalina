@@ -1,4 +1,4 @@
-[What's new in macOS Catalina Github](https://github.com/khronokernel/What-s-new-in-macOS-Catalina)
+# What's new in macOS catalina
 
 * What has changed on the surface
    * Sidecar
