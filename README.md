@@ -1,4 +1,4 @@
-# What's new in macOS catalina
+
 
 * What has changed on the surface
    * Sidecar
@@ -205,34 +205,11 @@ Credit to u/ASentientBot
 2. It then hands off control to its plugin, AppleACPIEC.kext, and starts a probe for either `PNP0C09` or `boot-ec`
 3. When loaded, it will then verify for the other meaning we must have both `PNP0C09` and `boot-ec`. If not, macOS will just get stuck but due to the nature of parallel kext loading we don't explicitly see the error instead seeing errors such as `apfs_module_start...`, `Waiting for Root device`, `Waiting on...IOResources...`, `previous shutdown cause...`, etc. And guess what, most PCs don't have their embedded controller named `EC__` instead known by `EC0_`, `H_EC` or `ECDV`.(Lenovos are the rare exception)
 
-To get around these problems, we have a couple options:
+To get around these problems, we have a whole guide!:
 
-* Turn off your real EC and set a fake EC(we still need an EC present for AppleBusPower).
-   * Recommended method for desktops, can severly screw up laptops.
-      * [SSDTTime](https://github.com/corpnewt/SSDTTime)(Use this for when you have access to the systems DSDT, `F4` at Clover screen will dump it to EFI/CLOVER/ACPI/origin or running SSDTTime in Windows/Linux can also dump it. Easiest and recommenced way to setup EC, only way for AMD CPU users)
-      * [USBmap](https://github.com/corpnewt/USBMap)(Some may already have an SSDT-EC in their EFI if they ran USBmap sometime after Nov 18, 2018)
-      * [SSDT-EC-USBX.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl) (Skylake and newer)
-      * [SSDT-EC.dsl](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl) (Haswell and older)
-   * Don't forget to add the .aml(Assembled) file to EFI/CLOVER/ACPI/Patched
-* Rename your EC device.
-   * Not recommened for desktops as this still loads AppleACPIEC which is incompatible with desktop PCs, ideal solution for laptops.
+* [Fixing ECs for macOS Catalina](https://khronokernel.github.io/EC-fix-guide/)
 
-|Comment|Find\*\[HEX\]|Replace\[HEX\]|
-|:-|:-|:-|
-|change EC0 to EC|4543305f|45435f5f|
-|change H\_EC to EC|485f4543|45435f5f|
-|change ECDV to EC|45434456|45435f5f|
-|change PGEC to EC|50474543|45435f5f|
-
->But how do I know what EC I have?
-
-Easy to tell, open up your DSDT and search for `PNP0C09`. Most will just return 1 device but for those with 2 need to see which is the main. To check, make sure it has the following properties:
-
-* `_HID`
-* `_CRS`
-* `_GPE`
-
-Do note if you only have 1 `PNP0C09` device you will not need to check as even systems with only 1 won't always have all the proper properties.
+This is also covered in the [OpenCore Vanilla Guide](https://khronokernel-2.gitbook.io/opencore-vanilla-desktop-guide/) already
 
 Sources:
 
